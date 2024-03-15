@@ -1,4 +1,4 @@
-<img align="left" width="500"  src="images/vrai-logo.png" style="margin-right:-230px"></br></br></br></br>
+<img align="left" width="500"  src="images/vrai-logo-b.png" style="margin-right:-230px"></br></br></br></br>
 <h1> COIGAN: Controllable Object Inpainting through Generative Adversarial Network applied to Defect Synthesis for Data Augmentation</h1>
 </br>
 
