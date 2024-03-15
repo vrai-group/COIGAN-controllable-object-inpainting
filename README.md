@@ -1,7 +1,5 @@
-<p>
-<img align="left" width="500"  src="images/vrai-logo.png" style="margin-right:-230px">
+<img align="left" width="500"  src="images/vrai-logo.png" style="margin-right:-230px"></br></br></br></br>
 <h1> COIGAN: Controllable Object Inpainting through Generative Adversarial Network applied to Defect Synthesis for Data Augmentation</h1>
-</p>
 </br>
 
 Revisited COIGAN project for the IROS 2024 conference. This project exploit the COIGAN training architecture to generate a dataset of defected images from a dataset of images from the new Morandi bridge located at Genova.
