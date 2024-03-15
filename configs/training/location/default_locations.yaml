@@ -1,0 +1,17 @@
+#####################################################################################
+### ATTENTION : This var must be setted with the actual path to the project home! ###
+project_home: /coigan/COIGAN-IROS-2024
+#project_home: /home/max/thesis/COIGAN-controllable-object-inpainting
+#project_home: /home/ubuntu/hdd/COIGAN-controllable-object-inpainting
+#####################################################################################
+
+data_root_dir: ${data.dataset_location}
+out_root_dir: ${location.project_home}/experiments
+
+experiment_path: ${location.out_root_dir}/${run_name}
+checkpoint_dir: ${location.experiment_path}/checkpoints
+logs_dir: ${location.experiment_path}/logs
+samples_dir: ${location.experiment_path}/samples
+
+pretrained_models: ${location.project_home}/models
+loss_models: ${location.project_home}/models_loss

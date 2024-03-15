@@ -1,0 +1,15 @@
+grpcio==1.36.1
+torch
+tensorflow
+Keras
+pandas
+numpy
+matplotlib
+scikit-learn
+torchviz 
+torchsummary 
+future 
+ujson 
+ipdb 
+sklearn 
+

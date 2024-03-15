@@ -1,0 +1,46 @@
+conf_name: DEBUG_COIGAN_augment_test_ssdd
+run_name: ${conf_name}_${now:%d-%m-%Y_%H-%M-%S}
+
+# device to use for inference
+device: cuda:0
+
+# path to the checkpoint file to load and the input output dataset folders
+checkpoint_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/checkpoints/620000.pt
+
+# input and output dataset folders and parameters
+input_dataset_folder: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set_filtered
+input_dataset_binary: True
+
+output_dataset_folder: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set_filtered_augmented
+output_dataset_binary: True
+
+tile_size: # size of the tiles to generate (h, w)
+  - 256 
+  - 256
+
+batch_size: 4 # batch size for the coigan generator
+num_workers: 8 # dataloader workers
+prefetch: 4
+
+# augmentation parameters
+n_extra_samples: 25000 # number of extra samples to generate (out_dataset_len = n_extra_samples + len(input_dataset))
+
+# other data preparation params
+mask_base_img: False # If true zero out the base image where the concat masks are 1s, for the input_base_img and for the generator output
+use_g_ema: False # use exponential moving average for the generator (if set to true and the checkpoint dosen't contain the g_ema state_dict, the script will raise an error)
+
+# mask noise parameters
+input_masks_noise_mean: 0.6 # mean of the gaussian noise applied to the input masks
+input_masks_noise_std: 0.08 # standard deviation of the gaussian noise applied to the input masks
+input_masks_noise_smooth: 41 # size of gaussian filter applied to the noise masks
+
+# data variables
+max_iter: 10000 # expected by the severstal_dataset config files 
+distributed: False # DO NOT CHANGE, the distributed option is not implemented for the evaluation, needed only as dataloader parameter
+
+
+defaults:
+  - data: debug_severstal_dataset
+  - location: debug_locations
+  - generator: ffc_resnet_075_cccd
+  - hydra: overrides

@@ -1,0 +1,1 @@
+docker build $(cat ./build_args.txt) -t coigan-iros-2024 .

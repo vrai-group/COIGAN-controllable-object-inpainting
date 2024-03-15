@@ -1,0 +1,14 @@
+# @package _group_
+
+logs_dir: ${location.logs_dir}
+
+# intervals
+log_weights_interval: ${log_weights_interval}
+
+# wandb
+enable_wandb: ${enable_wandb} # enable wandb logging, if False 
+wandb_kwargs:
+  project: COIGAN-IROS-2024-CCCD
+  entity: deep_learning_team
+  mode: online
+

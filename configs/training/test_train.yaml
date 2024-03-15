@@ -1,0 +1,54 @@
+
+conf_name: COIGAN_severstal_test
+run_name: ${conf_name}_${now:%d-%m-%Y_%H-%M-%S}
+
+# training variables
+#checkpoint: null # path to the checkpoint file to load
+checkpoint: /coigan/COIGAN-IROS-2024/experiments/COIGAN_severstal_run_18_21/370000.pt
+#checkpoint: /home/ubuntu/hdd/COIGAN-controllable-object-inpainting/ref_checkpoints/40000.pt
+start_iter: 0
+max_iter: 800000
+
+batch_size: 24 #8 # batch size for each training process
+num_workers: 18 #6 # dataloader workers
+prefetch: 20 #4
+
+gen_steps: 1 # define how many steps to train the generator before give the turn to the discriminator
+disc_steps: 1 # define how many steps to train the discriminator before give the turn to the generator
+
+ref_disc_steps_delay: 2 # define every how many defect discriminator's steps the reference discriminator is trained, es.(2 -> train once the reference discriminator every 2 steps of the defect discriminator)
+
+
+use_g_ema: False # use exponential moving average for the generator
+use_ref_disc: True # use the reference discriminator for the generator training
+
+mask_base_img: False # If true zero out the base image where the concat masks are 1s, for the input_base_img and for the generator output
+
+# input noise masks parameters
+input_masks_noise_mean: 0.6 # mean of the gaussian noise applied to the input masks
+input_masks_noise_std: 0.08 # standard deviation of the gaussian noise applied to the input masks
+input_masks_noise_smooth: 41 # size of gaussian filter applied to the noise masks
+
+################################################
+distributed: True # enable distributed training
+################################################
+
+enable_wandb: True # enable wandb logging, if False no logging will be performed on the cloud
+log_img_interval: 1000 # steps interval between each output visualization
+log_weights_interval: 1000 # steps interval between each weights visualization # 0 to disable
+checkpoint_interval: 10000 # steps interval between each checkpoint
+
+# logging other options
+log_shapes_and_defects: False # enable the logging of input shapes and defects during the images logging
+
+defaults:
+  - location: default_locations
+  - data: severstal_dataset
+  - generator: ffc_resnet_075
+  - discriminator: swagan_discriminator # pix2pixhd_nlayer or swagan_discriminator
+  - ref_discriminator: swagan_discriminator
+  - optimizers: default_optimizers
+  - losses: default_losses
+  - logger: default_logger
+  - evaluator: default_evaluator
+  - hydra: overrides

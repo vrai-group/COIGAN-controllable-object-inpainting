@@ -1,0 +1,15 @@
+
+generator:
+  kind: adamw # adam or adamw
+  lr: 0.00035 #0.0007
+  betas: [0.0, 0.95] # [0.0, 0.99] for adamw
+  
+discriminator:
+  kind: adamw
+  lr: 0.0005
+  betas: [0.0, 0.95] # [0.0, 0.99] for adamw
+
+ref_discriminator:
+  kind: adamw
+  lr: 0.0005
+  betas: [0.0, 0.95] # [0.0, 0.99] for adamw

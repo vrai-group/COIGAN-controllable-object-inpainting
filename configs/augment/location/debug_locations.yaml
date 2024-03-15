@@ -1,0 +1,11 @@
+#####################################################################################
+### ATTENTION : This var must be setted with the actual path to the project home! ###
+#project_home: /home/max/thesis/COIGAN-controllable-object-inpainting
+project_home: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024
+#project_home: /coigan/COIGAN-IROS-2024
+#####################################################################################
+
+out_root_dir: ${location.project_home}/experiments
+
+experiment_path: ${location.out_root_dir}/${run_name}
+logs_dir: ${location.experiment_path}/logs

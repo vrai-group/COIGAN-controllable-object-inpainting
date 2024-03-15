@@ -1,0 +1,75 @@
+location:
+  project_home: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN
+  data_root_dir: ${data.dataset_location}
+  out_root_dir: ${location.project_home}/experiments
+  experiment_path: ${location.out_root_dir}/${run_name}
+  checkpoint_dir: ${location.experiment_path}/checkpoints
+  logs_dir: ${location.experiment_path}/logs
+  samples_dir: ${location.experiment_path}/samples
+data:
+  dataset_name: segmentation_jsonl
+  dataset_location: ${location.project_home}/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set
+  validation_dataset_location: ${location.project_home}/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set
+  out_size: 256
+  dataloader_shuffle: false
+  seed: 42
+  kind: ${data.dataset_name}
+  augmentation_sets:
+    mask_aug: mask_defects_preset
+    img_aug: imgs_defects_preset
+  image_folder_path: ${data.dataset_location}/data
+  metadata_file_path: ${data.dataset_location}/dataset.jsonl
+  index_file_path: ${data.dataset_location}/index
+  val_image_folder_path: ${data.validation_dataset_location}/data
+  val_metadata_file_path: ${data.validation_dataset_location}/dataset.jsonl
+  val_index_file_path: ${data.validation_dataset_location}/index
+  classes:
+  - '0'
+  - '1'
+  - '2'
+  masks_fields:
+  - polygons
+  binary: true
+  torch_dataloader_kwargs:
+    batch_size: ${batch_size}
+    num_workers: ${num_workers}
+    pin_memory: true
+    drop_last: true
+    prefetch_factor: ${prefetch}
+model:
+  kind: unet
+  n_channels: 3
+  n_classes: 3
+  bilinear: true
+  sigm_out: false
+optimizers:
+  model:
+    kind: sgd
+    lr: 0.025
+    weight_decay: 1.0e-08
+    momentum: 0.9
+losses: {}
+logger:
+  logs_dir: ${location.logs_dir}
+  log_weights_interval: ${log_weights_interval}
+  enable_wandb: ${enable_wandb}
+  wandb_kwargs:
+    project: Unet-severstal-IROS-2024
+    entity: deep_learning_team
+    mode: online
+evaluator: {}
+conf_name: Segmentation_severstal_test
+run_name: ${conf_name}_${now:%d-%m-%Y_%H-%M-%S}
+checkpoint: null
+epochs: 20
+batch_size: 4
+num_workers: 4
+prefetch: 4
+val_interval: 300
+device: cuda:0
+amp: true
+distributed: false
+enable_wandb: true
+log_img_interval: 100
+log_weights_interval: 100
+checkpoint_interval: 400

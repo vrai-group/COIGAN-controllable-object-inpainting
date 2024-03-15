@@ -1,0 +1,76 @@
+[2024-02-20 01:31:28,863][__main__][INFO] - Config: location:
+  project_home: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN
+  data_root_dir: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set
+  out_root_dir: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/experiments
+  experiment_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/experiments/Segmentation_severstal_test_20-02-2024_01-31-28
+  checkpoint_dir: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/experiments/Segmentation_severstal_test_20-02-2024_01-31-28/checkpoints
+  logs_dir: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/experiments/Segmentation_severstal_test_20-02-2024_01-31-28/logs
+  samples_dir: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/experiments/Segmentation_severstal_test_20-02-2024_01-31-28/samples
+data:
+  dataset_name: segmentation_jsonl
+  dataset_location: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set
+  validation_dataset_location: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set
+  out_size: 256
+  dataloader_shuffle: false
+  seed: 42
+  kind: segmentation_jsonl
+  augmentation_sets:
+    mask_aug: mask_defects_preset
+    img_aug: imgs_defects_preset
+  image_folder_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set/data
+  metadata_file_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set/dataset.jsonl
+  index_file_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set/index
+  val_image_folder_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set/data
+  val_metadata_file_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set/dataset.jsonl
+  val_index_file_path: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_train_set/index
+  classes:
+  - '0'
+  - '1'
+  - '2'
+  masks_fields:
+  - polygons
+  binary: true
+  torch_dataloader_kwargs:
+    batch_size: 4
+    num_workers: 4
+    pin_memory: true
+    drop_last: true
+    prefetch_factor: 4
+model:
+  kind: unet
+  n_channels: 3
+  n_classes: 3
+  bilinear: true
+  sigm_out: false
+optimizers:
+  model:
+    kind: sgd
+    lr: 0.025
+    weight_decay: 1.0e-08
+    momentum: 0.9
+losses: {}
+logger:
+  logs_dir: /home/max/Desktop/Articolo_coigan/COIGAN-IROS-2024/COIGAN/experiments/Segmentation_severstal_test_20-02-2024_01-31-28/logs
+  log_weights_interval: 100
+  enable_wandb: true
+  wandb_kwargs:
+    project: Unet-severstal-IROS-2024
+    entity: deep_learning_team
+    mode: online
+evaluator: {}
+conf_name: Segmentation_severstal_test
+run_name: Segmentation_severstal_test_20-02-2024_01-31-28
+checkpoint: null
+epochs: 20
+batch_size: 4
+num_workers: 4
+prefetch: 4
+val_interval: 300
+device: cuda:0
+amp: true
+distributed: false
+enable_wandb: true
+log_img_interval: 100
+log_weights_interval: 100
+checkpoint_interval: 400
+

@@ -1,0 +1,88 @@
+
+dataset_name: severstal-steel-defect # name of the dataset
+dataset_location: ${location.project_home}/datasets/Conglomerate Concrete Crack Detection/Train
+
+out_size: 256 # size of dataset
+batch_size: ${batch_size} # batch size for each training process
+num_workers: ${num_workers} # dataloader workers
+dataloader_shuffle: false # enabling the dataset shuffling at dataloader level
+seed: 42 # seed for the dataset shuffling
+
+# enable the usage of the reference discriminator
+# so in the dataset creation load the relative datasets
+use_ref_disc: ${use_ref_disc}
+
+# Setting that enable a beahvior that generate for the same sample different shapes in input to the generator
+# and defects in input to the discriminator.
+different_shapes: False ########################################################################################
+
+allow_overlap: false # allow overlap between objects in input masks and on the gt objects # WARNING True not implemented yet!
+mask_base_img: ${mask_base_img} # if true zero out the base image where the concat masks are 1s
+
+
+kind: ${data.dataset_name}
+
+augmentation_sets: 
+  mask_aug: mask_inpainting_preset
+  img_aug: imgs_inpainting_preset
+
+# position of the base dataset
+base_dataset_kwargs:
+  root: ${data.dataset_location}/reduced_base_cccd
+
+ref_dataset_kwargs:
+  root: ${data.dataset_location}/reduced_base_cccd
+
+# objects datasets parameters
+object_datasets:
+  # position of the object datasets and name of each subfolder (class)
+  base_path: ${data.dataset_location}/object_datasets
+  names: 
+    - object_dataset_0
+    #- object_dataset_1
+    #- object_dataset_2
+    #- object_dataset_3
+  classes:
+    - defect_0
+    #- defect_1
+    #- defect_2
+    #- defect_3
+  binary: true # specify if the datasets are binary format or stright json
+  n: 1 #4 # number of object datasets
+
+# shape dataloader parameters
+shape_dataloader_kwargs:
+  sample_shapes: [1, 2, 3]
+  shape_probs: [0.7, 0.2, 0.1]
+  tile_size: ${data.out_size}
+
+# object dataloader parameters
+object_dataloader_kwargs:
+  sample_defects: [1, 2, 3]
+  defects_probs: [0.7, 0.2, 0.1]
+  tile_size: ${data.out_size}
+
+coigan_dataset_kwargs:
+  allow_overlap: ${data.allow_overlap} # allow overlap between objects in input masks and on the gt objects
+  mask_base_img: ${data.mask_base_img} # if true zero out the base image where the concat masks are 1s
+  shuffle: true
+  length: ${max_iter}
+  mask_noise_generator_kwargs:
+    kind: multiscale
+    kind_kwargs:
+      interpolation: bilinear
+      strategy: replace
+      scales: [1, 2, 4]
+      smooth: ${input_masks_noise_smooth}
+      base_generator_kwargs:
+        kind: gaussian
+        kind_kwargs:
+          mean: ${input_masks_noise_mean}
+          std: ${input_masks_noise_std}
+
+torch_dataloader_kwargs:
+  batch_size: ${data.batch_size}
+  num_workers: ${data.num_workers}
+  pin_memory: true
+  drop_last: true
+  prefetch_factor: ${prefetch}

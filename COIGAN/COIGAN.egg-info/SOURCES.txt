@@ -1,0 +1,8 @@
+setup.cfg
+setup.py
+COIGAN.egg-info/PKG-INFO
+COIGAN.egg-info/SOURCES.txt
+COIGAN.egg-info/dependency_links.txt
+COIGAN.egg-info/not-zip-safe
+COIGAN.egg-info/requires.txt
+COIGAN.egg-info/top_level.txt

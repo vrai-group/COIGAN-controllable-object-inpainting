@@ -1,0 +1,6 @@
+kind: swagan_discriminator
+
+size: 256
+channel_multiplier: 3
+input_channels: 9
+keep_features: False # needed to return the features for the feature matching loss

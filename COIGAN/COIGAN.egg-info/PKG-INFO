@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: COIGAN
+Version: 0.1.0
+Summary: Training, inference and test pipeline package for a controled masked adversarial generator
+Home-page: https://github.com/MassimilianoBiancucci/COIGAN-controllable-object-inpainting
+Author: Massimiliano Biancucci
+Author-email: Binacucci95@Gmail.com
+Keywords: COIGAN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3.8
+Requires-Python: >=3.7

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  coigan-iros-2024:
+    image: coigan-iros-2024:latest # The image to use
+    runtime: nvidia # Use the nvidia runtime to access the GPUs
+    devices:
+      - /dev/nvidia1 # GPU 1
+      - /dev/nvidia2 # GPU 2
+    shm_size: 100g # 100GB of shared memory for the container (needed in the test conditions)
+    volumes:
+      - /disks/disk3/vrai-lab/AlessandroGaldelli/IROS/COIGAN-IROS-2024/experiments:/coigan/COIGAN-IROS-2024/experiments # Mount the experiments folder to the container
+      - /disks/disk3/vrai-lab/AlessandroGaldelli/IROS/COIGAN-IROS-2024/datasets:/coigan/COIGAN-IROS-2024/datasets # Mount the Datasets folder to the container
+
+      

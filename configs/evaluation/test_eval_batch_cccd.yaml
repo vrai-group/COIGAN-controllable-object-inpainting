@@ -1,0 +1,57 @@
+
+conf_name: COIGAN_evaluation_cccd
+run_name: ${conf_name}_${now:%d-%m-%Y_%H-%M-%S}
+
+# device to use for inference
+device: cuda:0
+
+# path to the checkpoints folder to load
+# each checkpoint in the folder must be in the format {checkpoint_step}.pt or it will be ignored
+checkpoint_path: /coigan/COIGAN-IROS-2024/experiments/COIGAN_cccd_test_10-03-2024_02-09-36/checkpoints
+min_checkpoint: 0 # minimum checkpoint to load
+
+# path for the train images used to create a FID reference distribution
+# (the FID generated between the train_set and the test_set is used to evaluate the FID obtained by the generated images and the test_set)
+train_imgs_path: ${location.project_home}/datasets/Conglomerate Concrete Crack Detection/Train/reduced_base_cccd/data
+
+# path for the reference images used to create FID reference distribution
+#test_imgs_path: ${location.project_home}/datasets/severstal_steel_defect_dataset/test_IROS2024/tile_test_set/data
+test_imgs_path: ${location.project_home}/datasets/Conglomerate Concrete Crack Detection/Train/reduced_base_cccd/data
+
+# path for the generated images
+generated_imgs_path: ${location.experiment_path}/generated_imgs
+
+# evaluation variables
+n_samples: 1305 #51000 #26000 # number of samples to generate for the evaluation, (the same num of images are randomly selected from the test_imgs_path)
+inception_dims: 2048 # dimension of the inception features
+# NOTE the inception dims available are:
+#   64: 0,   # First max pooling features
+#   192: 1,  # Second max pooling featurs
+#   768: 2,  # Pre-aux classifier features
+#   2048: 3  # Final average pooling features
+
+batch_size: 8 # batch size for the coigan generator
+inc_batch_size: 8 # batch size for the inception network
+num_workers: 8 # dataloader workers
+prefetch: 32
+
+# other data preparation params
+mask_base_img: False # If true zero out the base image where the concat masks are 1s, for the input_base_img and for the generator output
+use_g_ema: False # use exponential moving average for the generator (if set to true and the checkpoint dosen't contain the g_ema state_dict, the script will raise an error)
+
+# input noise masks parameters
+input_masks_noise_mean: 0.8 # mean of the gaussian noise applied to the input masks
+input_masks_noise_std: 0.08 # standard deviation of the gaussian noise applied to the input masks
+input_masks_noise_smooth: 11 # size of gaussian filter applied to the noise masks
+
+
+# data variables
+max_iter: 10000 # expected by the severstal_dataset config files 
+distributed: False # DO NOT CHANGE, the distributed option is not implemented for the evaluation, needed only as dataloader parameter
+use_ref_disc: False # DO NOT CHANGE, the reference discriminator is not used for the evaluation, needed only as dataloader parameter
+
+defaults:
+  - data: cccd_dataset
+  - location: default_locations
+  - generator: ffc_resnet_075_cccd
+  - hydra: overrides
