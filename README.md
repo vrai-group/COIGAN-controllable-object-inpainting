@@ -7,8 +7,10 @@ Revisited COIGAN project for the IROS 2024 conference. This project exploit the 
 # Table of Contents
 - [Table of Contents](#table-of-contents)
 - [Model results](#model-results)
-  - [Dataset used for the training](#dataset-used-for-the-training)
   - [Sample results](#sample-results)
+  - [Dataset used for the training](#dataset-used-for-the-training)
+    - [Concrete Crack Conglomerate Dataset](#concrete-crack-conglomerate-dataset)
+    - [Severstal Steel Defect Detection dataset](#severstal-steel-defect-detection-dataset)
   - [Fid evaluation](#fid-evaluation)
 - [Build the Docker image](#build-the-docker-image)
   - [Setup the build\_args file](#setup-the-build_args-file)
@@ -20,14 +22,39 @@ Revisited COIGAN project for the IROS 2024 conference. This project exploit the 
 
 # Model results
 
+## Sample results
+Some results showing the effectiveness of the COIGAN model in generating defected over base images, in different contexts:
+
+<figure>
+  <img style="align:center;" width="500" src="images/test_coigan_bridge45x.gif">
+  <figcaption style="text-align:center;">Results obtained from a COIGAN model trained on the Severstal steel defect detection dataset, using base images from the San Giorgio viaduct (Genoa, Italy).</figcaption>
+</figure>
+</br>
+
+<figure>
+  <img style="align:center;" width="500" src="images/test_coigan_cccd.gif">
+  <figcaption style="text-align:center;">Results obtained from a COIGAN model trained on the Concrete Crack Conglomerate Dataset, using base images from the San Giorgio viaduct (Genoa, Italy).</figcaption>
+</figure>
+</br>
+
 ## Dataset used for the training
 
+### Concrete Crack Conglomerate Dataset
+The Conglomerate concrete crack dataset is a collection of images that focuses on detecting cracks in concrete structures. This dataset is widely used in the field of civil engineering and infrastructure inspection. It contains a variety of images showcasing different types and severities of cracks in concrete. It's a segmentation dataset, and contain only one class of defects: cracks, plus the background. This dataset is composed by a training set of 9,899 and a validation set composed by 1,096 images.
 
-## Sample results
-
+### Severstal Steel Defect Detection dataset
+The Severstal steel defect detection dataset is designed for the task of detecting defects in steel surfaces. It consists of images capturing various types of defects that can occur during the manufacturing steel plates. The classes are 4 and are unlabeled, they are just numbers from 1 to 4. This dataset is composed by a 12,568 images with a shape of 256x1600 pixels. In this test we tiled the images in 7 slightly overlapping images of 256x256 pixels, to have a more manageable dataset, in the context of the COIGAN pipeline.
 
 ## Fid evaluation
+The fid score calculated for the two datasets used for the training of the COIGAN model, are shown in the following figure.
+The FID score was calculated between the training set and the generated images for the Severstal steel defect detection dataset. For the Concrete Crack Conglomerate Dataset a different setting was needed, the heavy difference between the training set and the base set used for the generation of the defected images brought us to chose to calculate the FID score between the generated images and the base images of the set, to have a more meaningful result, as drawback the base images available were only 1305, justifying the high value of the FID score.
 
+<figure>
+  <img style="align:center;" width="500" src="images/plot_FID2_page-0001.jpg">
+  <figcaption style="text-align:center;">FID results calculated on the COIGAN model trained on the Severstal steel defect detection dataset, and the Concrete Crack Conglomerate Dataset.
+  </figcaption>
+</figure>
+</br>
 
 # Build the Docker image
 
