@@ -25,11 +25,11 @@ Revisited COIGAN project for the IROS 2024 conference. This project exploit the 
 ## Sample results
 Some results showing the effectiveness of the COIGAN model in generating defected over base images, in different contexts:
 
-![COIGAN_test_on_Severstal_steel_defect_detection_dataset](images/test_coigan_bridge45x.gif)
+![COIGAN_test_on_Severstal_steel_defect_detection_dataset](images/test_coigan_bridge45xu.gif)
 <figcaption style="text-align:center;">Results obtained from a COIGAN model trained on the Severstal steel defect detection dataset, using base images from the San Giorgio viaduct (Genoa, Italy).</figcaption>
 </br></br>
 
-![COIGAN_test_on_Concreate_crack_conglomerate_dataset](images/test_coigan_cccd.gif)
+![COIGAN_test_on_Concreate_crack_conglomerate_dataset](images/test_coigan_cccdu.gif)
 <figcaption style="text-align:center;">Results obtained from a COIGAN model trained on the Concrete Crack Conglomerate Dataset, using base images from the San Giorgio viaduct (Genoa, Italy).</figcaption>
 </br></br>
 
