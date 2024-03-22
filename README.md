@@ -26,16 +26,20 @@ Revisited COIGAN project for the IROS 2024 conference. This project exploit the 
 Some results showing the effectiveness of the COIGAN model in generating defected over base images, in different contexts:
 
 <figure>
-  <img style="align:center;" width="500" src="images/test_coigan_bridge45x.gif">
+  <div style="display: flex; justify-content: center;">
+    <img width="900" src="images/test_coigan_bridge45x.gif">
+  </div>
   <figcaption style="text-align:center;">Results obtained from a COIGAN model trained on the Severstal steel defect detection dataset, using base images from the San Giorgio viaduct (Genoa, Italy).</figcaption>
 </figure>
-</br>
+</br></br>
 
 <figure>
-  <img style="align:center;" width="500" src="images/test_coigan_cccd.gif">
+  <div style="display: flex; justify-content: center;">
+    <img width="900" src="images/test_coigan_cccd.gif">
+  </div>
   <figcaption style="text-align:center;">Results obtained from a COIGAN model trained on the Concrete Crack Conglomerate Dataset, using base images from the San Giorgio viaduct (Genoa, Italy).</figcaption>
 </figure>
-</br>
+</br></br>
 
 ## Dataset used for the training
 
@@ -50,7 +54,9 @@ The fid score calculated for the two datasets used for the training of the COIGA
 The FID score was calculated between the training set and the generated images for the Severstal steel defect detection dataset. For the Concrete Crack Conglomerate Dataset a different setting was needed, the heavy difference between the training set and the base set used for the generation of the defected images brought us to chose to calculate the FID score between the generated images and the base images of the set, to have a more meaningful result, as drawback the base images available were only 1305, justifying the high value of the FID score.
 
 <figure>
-  <img style="align:center;" width="500" src="images/plot_FID2_page-0001.jpg">
+  <div style="display: flex; justify-content: center;">
+    <img width="900" src="images/plot_FID2_page-0001.jpg">
+  </div>
   <figcaption style="text-align:center;">FID results calculated on the COIGAN model trained on the Severstal steel defect detection dataset, and the Concrete Crack Conglomerate Dataset.
   </figcaption>
 </figure>
