@@ -182,11 +182,18 @@ The losses supported in the training pipeline are:
 - **ref_discriminator_losses:logistic**: ref discriminator logistic loss, is the loss used by the ref_discriminator. (used only if use_ref_disc is True)
 - **ref_discriminator_reg**: ref discriminator regularization, is the path length regularization loss, the R1 regularization loss is used. (used only if use_ref_disc is True)
 
-# Run the evaluation
+### Citation
 
+If you use this work, please cite it as follows:
 
-# Run the inference
-
-
+```bibtex
+@inproceedings{biancucci2025coigan,
+  title     = {COIGAN: Controllable Object Inpainting through Generative Adversarial Network for Defect Synthesis in Data Augmentation},
+  author    = {Biancucci, Massimiliano and Galdelli, Alessandro and Narang, Gagan and Milani, Riccardo and Zingaretti, Primo},
+  booktitle = {Proceedings of the 2025 IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2025},
+  publisher = {IEEE},
+  note      = {Accepted}
+}
 
 
