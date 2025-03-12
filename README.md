@@ -184,12 +184,14 @@ The losses supported in the training pipeline are:
 
 ### Citation
 
+For any queries, you can contact the corresponding author, Dr. Alessandro Galdelli (a.galdelli@univpm.it).
+
 If you use this work, please cite it as follows:
 
 ```bibtex
 @inproceedings{biancucci2025coigan,
   title     = {COIGAN: Controllable Object Inpainting through Generative Adversarial Network for Defect Synthesis in Data Augmentation},
-  author    = {Biancucci, Massimiliano and Galdelli, Alessandro and Narang, Gagan and Milani, Riccardo and Zingaretti, Primo},
+  author    = {Biancucci, Massimiliano and Galdelli, Alessandro and Narang, Gagan and Pietrini, Rocco and Mancini, Adriano and Zingaretti, Primo},
   booktitle = {Proceedings of the 2025 IEEE International Conference on Robotics and Automation (ICRA)},
   year      = {2025},
   publisher = {IEEE},
